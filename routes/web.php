@@ -16,15 +16,14 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('front.home');
 
 Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('front.shop');
 
-Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'admin']], function (){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/',  [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
 
     Route::resource('banner', BannerController::class);
@@ -32,10 +31,10 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'admin']], function (){
     Route::resource('product', ProductController::class);
 });
 
-Route::group(['prefix'=>'seller', 'middleware'=>['auth', 'seller']], function (){
+Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'seller']], function () {
     Route::get('/',  [App\Http\Controllers\HomeController::class, 'seller'])->name('seller');
 });
 
-Route::group(['prefix'=>'customer', 'middleware'=>['auth', 'customer']], function (){
+Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], function () {
     Route::get('/',  [App\Http\Controllers\HomeController::class, 'customer'])->name('customer');
 });

@@ -23,7 +23,7 @@ class Category extends Model
             'is_parent' => 'sometimes|in:1',
             'parent_id' => 'nullable|exists:categories,id',
             'status' => 'required|in:active,inactive',
-            'image' => 'required|image|max:5120'
+            'image' => 'nullable|image|max:5120'
         ];
         if ($act == 'update'){
             $rule['image'] = 'sometimes|image|max:5120';

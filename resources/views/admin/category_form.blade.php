@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Category Add | Admin Dashboard | ecom300')
+@section('title', 'Category Add | Admin Dashboard | Munal Store')
 
 
 @section('form_style')
@@ -85,7 +85,7 @@
                         <div class="form-group row mb-4">
                             {{ Form::label('image', 'Image:', ['class'=> 'col-sm-3']) }}
                             <div class="col-sm-5">
-                                {{ Form::file('image', ['id' => 'status' , 'required' => (isset($category_list) ?false : true) , 'accept' =>'image/*']) }}
+                                {{ Form::file('image', ['id' => 'status' , 'accept' =>'image/*']) }}
                                 @error('error')
                                 <span class="alert-danger">{{ $message }}</span>
                                 @enderror

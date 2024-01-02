@@ -14,7 +14,6 @@ class Banner extends Model
     {
         $rule =  [
             'title' => 'nullable|string',
-            'link' => 'required|url',
             'status' => 'required|in:active,inactive',
             'image' => 'required|image|max:5120'
         ];

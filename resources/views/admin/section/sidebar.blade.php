@@ -22,42 +22,42 @@
             <li class="heading">FEATURES</li>
             <li>
                 <a class="" href="{{ route('banner.index') }}"><i class="sidebar-item-icon fa fa-image"></i>
-                    <span class="nav-label">Banner Manger</span>
+                    <span class="nav-label">Banner Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href="{{ route('category.index') }}"><i class="sidebar-item-icon fa fa-sitemap"></i>
-                    <span class="nav-label">Category Manger</span>
+                    <span class="nav-label">Category Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href="{{ route('product.index') }}"><i class="sidebar-item-icon fa fa-shopping-bag"></i>
-                    <span class="nav-label">Product Manger</span>
+                    <span class="nav-label">Product Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href=""><i class="sidebar-item-icon fa fa-shopping-cart"></i>
-                    <span class="nav-label">Order Manger</span>
+                    <span class="nav-label">Order Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href=""><i class="sidebar-item-icon fa fa-gift"></i>
-                    <span class="nav-label">Offer Manger</span>
+                    <span class="nav-label">Offer Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href=""><i class="sidebar-item-icon fa fa-users"></i>
-                    <span class="nav-label">Users Manger</span>
+                    <span class="nav-label">Users Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href=""><i class="sidebar-item-icon fa fa-comment"></i>
-                    <span class="nav-label">Review Manger</span>
+                    <span class="nav-label">Review Manager</span>
                 </a>
             </li>
             <li>
                 <a class="" href=""><i class="sidebar-item-icon fa fa-file"></i>
-                    <span class="nav-label">Pages Manger</span>
+                    <span class="nav-label">Pages Manager</span>
                 </a>
             </li>
         </ul>

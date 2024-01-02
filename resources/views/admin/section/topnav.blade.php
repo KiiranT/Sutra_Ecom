@@ -3,7 +3,7 @@
     <div class="page-brand">
         <a class="link" href="{{ route(Auth::user()->role) }}">
                     <span class="brand">Admin
-                        <span class="brand-tip">Ecom300</span>
+                        <span class="brand-tip">Munal Store</span>
                     </span>
             <span class="brand-mini">AE</span>
         </a>

@@ -35,6 +35,6 @@ class HomeController extends Controller
     }
 
     public function customer(){
-        return view('/home');
+        return view('client.index');
     }
 }

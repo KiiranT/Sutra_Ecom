@@ -10,8 +10,10 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/admin.css',
+                'resources/css/frontend.css',
                 'resources/js/app.js',
                 'resources/js/admin.js',
+                'resources/js/frontend.js',
                 // 'template/vendors/DataTables/datatables.min.css',
                 // 'template/vendors/DataTables/datatables.min.js'
             ],

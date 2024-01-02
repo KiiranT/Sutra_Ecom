@@ -8,7 +8,7 @@
             $('.table').DataTable();
         </script>
     @endsection
-    @section('title', 'Banner List | Admin Dashboard | ecom300')
+    @section('title', 'Banner List | Admin Dashboard | Munal Store')
 
     @section('main-content')
         <div class="page-content fade-in-up">
@@ -28,7 +28,6 @@
                                 <thead class="table-secondary">
                                 <tr>
                                     <th>Title</th>
-                                    <th>Link</th>
                                     <th>Thumbnail</th>
                                     <th>Status</th>
                                     <th>Action</th>
@@ -42,12 +41,6 @@
                                                 <a href="{{route('banner.edit',$banner_data->id)}}"
                                                    class="btn btn-link" title="Edit banner">
                                                     {{ $banner_data->title }}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a href="{{ $banner_data->link }}" target="_banner"
-                                                   style="color: black">
-                                                    {{ $banner_data->link }}
                                                 </a>
                                             </td>
                                             <td>

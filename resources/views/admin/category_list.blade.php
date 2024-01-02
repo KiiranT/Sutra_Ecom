@@ -8,7 +8,7 @@
             $('.table').DataTable();
         </script>
     @endsection
-    @section('title', ' Category List | Admin Dashboard | ecom300')
+    @section('title', ' Category List | Admin Dashboard | Munal Store')
 
     @section('main-content')
         <div class="page-content fade-in-up">
@@ -28,10 +28,8 @@
                                 <thead class="table-secondary">
                                 <tr>
                                     <th>Title</th>
-                                    <th>Summary</th>
                                     <th>Is parent</th>
                                     <th>Parent Info</th>
-                                    <th>Thumbnail</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -46,20 +44,12 @@
                                                     {{ $category_data->title }}
                                                 </a>
                                             </td>
-                                            <td>
-                                                {{ $category_data->summary }}
-                                            </td>
                                            <td>
                                                {{ ($category_data->is_parent) ? 'Yes' : 'No' }}
                                            </td>
                                             <td>
                                                 {{ @$category_data->parent_info['title'] }}
 {{--                                                {{ isset($category_data->parent_info['title']) ? $category_data->parent_info['title'] : null }}--}}
-                                            </td>
-                                            <td>
-                                                <img src="{{ asset('uploads/category/Thumb-'.$category_data->image) }}"
-                                                     alt=""
-                                                     class="img img-fluid" style="max-width: 4rem;">
                                             </td>
                                             <td>
                                             <span

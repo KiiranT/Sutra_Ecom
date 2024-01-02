@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Banner Add | Admin Dashboard | ecom300')
+@section('title', 'Banner Add | Admin Dashboard | Munal Store')
 
 
 @section('form_style')
@@ -38,7 +38,7 @@
                         <div class="form-group row">
                             {{ Form::label('link', 'Link:', ['class'=> 'col-sm-3']) }}
                             <div class="col-sm-9">
-                                {{ Form::text('link', @$banner_data->link, ['class' => 'form-control form-control-sm', 'id' => 'link', 'required' => true, 'placeholder' => 'Enter banner link ']) }}
+                                {{ Form::text('link', @$banner_data->link, ['class' => 'form-control form-control-sm', 'id' => 'link', 'placeholder' => 'Enter banner link ']) }}
                                 @error('link')
                                 <span class="alert-danger">{{ $message }}</span>
                                 @enderror
