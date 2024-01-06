@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
+    protected $category = null;
+    protected $product = null;
+
+    public function __construct(Category $_category, Product $_product)
+    {
+        $this->category = $_category;
+        $this->product = $_product;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +24,13 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('client.shop');
+        $parent_categories = Category::where(['is_parent' => 1, 'status' => 'active'])->get();
+        $all_products = Product::where(['status' => 'active'])->get();
+
+        return view('client.shop', [
+            'parent_categories' => $parent_categories,
+            'all_products' => $all_products,
+        ]);
     }
 
     /**

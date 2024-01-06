@@ -31,7 +31,7 @@ return new class extends Migration
             $table->enum('status',['active','out_of_stock','inactive'])->default('inactive');
             $table->foreign('cat_id')->references('id')->on('categories')->onDelete('SET NULL');
             $table->foreign('sub_cat_id')->references('id')->on('categories')->onDelete('SET NULL');
-            $table->enum('conditions', ['hot', 'new', 'winter', 'redeem', 'for_you'])->default('new');
+            $table->enum('conditions', ['hot', 'new', 'winter', 'sale', 'for_you'])->default('new');
             $table->foreign('added_by')->references('id')->on('users')->onDelete('SET NULL');
             $table->timestamps();
         });

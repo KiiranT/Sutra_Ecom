@@ -18,7 +18,7 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('front.home');
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [App\Http\Controllers\ShopController::class, 'index'])->name('front.shop');
@@ -29,10 +29,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('banner', BannerController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductController::class);
-});
-
-Route::group(['prefix' => 'seller', 'middleware' => ['auth', 'seller']], function () {
-    Route::get('/',  [App\Http\Controllers\HomeController::class, 'seller'])->name('seller');
 });
 
 Route::group(['prefix' => 'customer', 'middleware' => ['auth', 'customer']], function () {

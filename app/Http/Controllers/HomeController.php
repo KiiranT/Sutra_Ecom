@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Http\Request;
+use App\Models\Banner;
+use App\Models\Product; 
 
 class HomeController extends Controller
 {
@@ -26,15 +29,14 @@ class HomeController extends Controller
         return redirect()->route(request()->user()->role);
     }
 
-    public function admin(){
+    public function admin()
+    {
         return view('admin.dashboard');
     }
 
-    public function seller(){
-        return view('/home');
-    }
-
-    public function customer(){
-        return view('client.index');
+    public function customer(Banner $_banner, Product $_product)
+    {
+        $indexController = new IndexController($_banner, $_product);
+        return $indexController->index();
     }
 }

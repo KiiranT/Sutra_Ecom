@@ -41,6 +41,17 @@ class LoginController extends Controller
 
     public function credentials(Request $request)
     {
-        return ['email'=>$request->email, 'password'=>$request->password, 'status'=>'active'];
+        return ['email' => $request->email, 'password' => $request->password, 'status' => 'active'];
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/login');
     }
 }

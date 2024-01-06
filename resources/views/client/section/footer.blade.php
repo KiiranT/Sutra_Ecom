@@ -1,8 +1,8 @@
  <!-- info section -->
 
- <section class="info_section  layout_padding2-top">
-     <div class="social_container">
-         <div class="social_box">
+ <section class="info_section ">
+     <div class="icon-container">
+         <div class="icon_box">
              <a href="">
                  <i class="fa fa-facebook" aria-hidden="true"></i>
              </a>

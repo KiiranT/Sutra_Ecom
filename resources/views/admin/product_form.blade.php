@@ -99,7 +99,7 @@
                         <div class="form-group row mb-4">
                             {{ Form::label('conditions', 'Condition:', ['class' => 'col-sm-3']) }}
                             <div class="col-sm-9">
-                                {{ Form::select('conditions', ['hot' => 'Hot', 'new' => 'New', 'winter' => 'Winter', 'for_you' => 'For You'], @$product_list->conditions, ['class' => 'form-control form-control-sm', 'id' => 'conditions', 'required' => true, 'placeholder' => 'Select Condition ']) }}
+                                {{ Form::select('conditions', ['hot' => 'Hot', 'new' => 'New', 'sale' => 'Sale', 'for_you' => 'For You'], @$product_list->conditions, ['class' => 'form-control form-control-sm', 'id' => 'conditions', 'required' => true, 'placeholder' => 'Select Condition ']) }}
                                 @error('conditions')
                                     <span class="alert-danger">{{ $message }}</span>
                                 @enderror

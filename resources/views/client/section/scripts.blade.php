@@ -31,6 +31,24 @@
         });
     });
 </script>
+
+<script>
+    document.addEventListener('click', function(event) {
+        var dropdown = document.querySelector('.dropdown-content');
+        var userDropdown = document.querySelector('.user-dropdown');
+
+        if (!userDropdown.contains(event.target)) {
+            // Clicked outside the user-dropdown, hide the dropdown
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function toggleDropdown() {
+        var dropdown = document.querySelector('.dropdown-content');
+        dropdown.style.display = (dropdown.style.display === 'block') ? 'none' : 'block';
+    }
+</script>
+
 </body>
 
 </html>

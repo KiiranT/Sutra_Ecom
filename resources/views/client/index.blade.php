@@ -74,7 +74,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Latest Products
+                    Latest Sale
                 </h2>
             </div>
             <div id="latestProductCarousel" class="carousel slide" data-ride="carousel">
@@ -137,7 +137,7 @@
                                     <h6>Rs <span>${product.price}</span></h6>
                                 </div>
                                 <div class="new" style='background: red; color: white'>
-                                    <span>New</span>
+                                    <span>Sale</span>
                                 </div>
                             </a>
                         `;

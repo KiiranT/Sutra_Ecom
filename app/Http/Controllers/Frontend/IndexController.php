@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\Product; // Import the Product model
+use App\Models\Product; 
 use Illuminate\Http\Request;
 
 class IndexController extends Controller

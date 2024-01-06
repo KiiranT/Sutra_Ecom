@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>@yield('title')</title>
     @yield('form_style')
-
 {{--    <link rel="stylesheet" data-type="keditor-style" href=" @vite('resources/css/admin.css')">--}}
 {{--    @vite('resources/css/admin.css')--}}
     @vite(['resources/css/admin.css', 'resources/js/admin.js'])

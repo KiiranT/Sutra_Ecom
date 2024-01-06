@@ -1,77 +1,133 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Baloo 2', sans-serif;
+        }
+    </style>
+    <title>Munal Stores | Register</title>
+</head>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+<body class="bg-gray-100">
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    <section class="h-screen">
+        <div class="px-6 h-full text-gray-800">
+            <div class="flex justify-center items-center h-full">
+                <div class="w-full max-w-md">
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <!-- Alert -->
+                    <div class="fixed bottom-0 right-0 mb-4 mr-4" id="alert">
+                        <!-- Display your alert here as needed -->
+                    </div>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                    <div class="bg-white rounded-lg p-8 shadow-md">
+                        <h2 class="text-center text-2xl font-bold mb-6">Create Your Account</h2>
+
+                        @if ($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
+                                <strong>Oh sorry!</strong> There were some issues with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
+                        @endif
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <!-- Full Name input -->
+                                <div>
+                                    <input id="name" name="name" type="text" required
+                                        class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                        placeholder="{{ __('Full Name') }}" />
+                                </div>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <!-- User Name input -->
+                                <div>
+                                    <input id="username" name="username" type="text" required
+                                        class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                        placeholder="{{ __('User Name') }}" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <!-- Email input -->
+                                <div>
+                                    <input id="email" name="email" type="text" required
+                                        class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                        placeholder="{{ __('Email Address') }}" />
+                                </div>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <!-- Phone Number input -->
+                                <div>
+                                    <input id="phone" name="phone" type="number" required
+                                        class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                        placeholder="{{ __('Phone Number') }}" />
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <!-- Password input -->
+                            <div class="mb-4">
+                                <input id="password" name="password" type="password" required
+                                    class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                    placeholder="{{ __('Password') }}" />
                             </div>
-                        </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <!-- Confirm Password input -->
+                            <div class="mb-4">
+                                <input id="password-confirm" type="password" name="password_confirmation" required
+                                    class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600"
+                                    placeholder="{{ __('Confirm Password') }}" />
+                            </div>
+
+                            <!-- Gender input -->
+                            <div class="mb-4">
+                                <select name="gender" id="gender"
+                                    class="form-input w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white border border-gray-300 rounded focus:outline-none focus:border-blue-600">
+                                    <option value="" disabled selected class="text-gray-700 bg-white">--Select
+                                        Gender--</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="others">Others</option>
+                                </select>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit"
+                                    class="inline-block px-7 py-3 bg-green-500 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                                     {{ __('Register') }}
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                        <p class="text-sm font-semibold mt-4">
+                            Already Registered?
+                            <a href="{{ route('login') }}"
+                                class="text-blue-600 hover:text-blue-700 focus:text-blue-700 transition duration-200 ease-in-out">{{ __('Login') }}</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@endsection
+    </section>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        setTimeout(function() {
+            $("#alert").slideUp();
+        }, 3000);
+    </script>
+
+</body>
+
+</html>

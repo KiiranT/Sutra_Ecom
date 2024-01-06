@@ -2,13 +2,13 @@
 <nav class="page-sidebar" id="sidebar">
     <div id="sidebar-collapse">
         <div class="admin-block d-flex">
-            <div>
+            {{-- <div>
                 @if(file_exists(public_path(). '/uploads/user/'. auth()->user()->nimage))
                     <img src="{{ asset('uploads/user' . auth()->user()->image) }}" alt="" width="45px">
                 @else
                     <img src="../../../assets/img/admin-avatar.png"/>
                 @endif
-            </div>
+            </div> --}}
             <div class="admin-info">
                 <div class="font-strong">{{ auth()->user()->name }}</div>
                 <small>{{ ucfirst(auth()->user()->role) }}</small></div>
