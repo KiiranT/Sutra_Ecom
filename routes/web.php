@@ -36,6 +36,8 @@ Route::delete('/wishlist/remove/{key}', [App\Http\Controllers\WishlistController
 
 Route::get('autosearch', [\App\Http\Controllers\SearchController::class, 'autoSearch'])->name('front.autosearch');
 Route::get('search/{slug?}/{filter?}/', [\App\Http\Controllers\SearchController::class, 'search'])->name('front.search');
+Route::get('just_for_you', [\App\Http\Controllers\SearchController::class, 'justForYou'])->name('front.justForYou');
+Route::get('latest_products', [\App\Http\Controllers\SearchController::class, 'latestProducts'])->name('front.latestProducts');
 
 
 

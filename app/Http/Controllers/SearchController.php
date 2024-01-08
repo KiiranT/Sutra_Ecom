@@ -40,4 +40,16 @@ class SearchController extends Controller
 
         return view('client.search_results', compact('results'));
     }
+
+    public function justForYou()
+    {
+        $results = Product::where('conditions', 'for_you')->get();
+        return view('client.justForYou', compact('results'));
+    }
+
+    public function latestProducts()
+    {
+        $results = Product::where('conditions', 'new')->get();
+        return view('client.latestProducts', compact('results'));
+    }
 }

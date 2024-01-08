@@ -157,7 +157,7 @@
 
 
             <div class="btn-box">
-                <a href="">
+                <a href="{{ route('front.latestProducts') }}">
                     View All Products
                 </a>
             </div>
@@ -248,7 +248,7 @@
             </script>
 
             <div class="btn-box">
-                <a href="#placeholder-url">
+                <a href="{{ route('front.justForYou') }}">
                     View All Products
                 </a>
             </div>
