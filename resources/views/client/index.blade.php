@@ -90,12 +90,12 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
             <script>
                 // Sample product data
                 var latestProducts = [
                     @foreach ($latest_product_list as $product)
                         {
+                            id: "{{ $product->id }}",
                             name: "{{ $product->title }}",
                             price: "{{ $product->price }}",
                             image: "{{ asset('uploads/product/' . $product->image) }}"
@@ -127,8 +127,11 @@
                         var productBox = document.createElement("div");
                         productBox.classList.add("box");
 
+                        // Construct the URL with the correct format
+                        var productUrl = "{{ route('front.single_product', ['id' => '']) }}/" + product.id + "/" + product.name;
+
                         productBox.innerHTML = `
-                            <a href="#placeholder-url">
+                            <a href="${productUrl}">
                                 <div>
                                     <img src="${product.image}" alt="${product.name}" style="max-width: 100%; height: auto;">
                                 </div>
@@ -150,6 +153,8 @@
                     latestCarouselInner.appendChild(carouselItem);
                 }
             </script>
+
+
 
             <div class="btn-box">
                 <a href="">
@@ -186,6 +191,8 @@
                         {
                             name: "{{ $product->title }}",
                             price: "{{ $product->price }}",
+                            id: "{{ $product->id }}", // Assuming you have a product ID
+                            slug: "{{ $product->slug }}", // Assuming you have a product slug
                             image: "{{ asset('uploads/product/' . $product->image) }}"
                         },
                     @endforeach
@@ -215,8 +222,12 @@
                         var productBox = document.createElement("div");
                         productBox.classList.add("box");
 
+                        // Construct the URL with the correct format
+                        var productUrl = "{{ route('front.single_product', ['id' => '', 'slug' => '']) }}/" + product.id + "/" +
+                            product.slug;
+
                         productBox.innerHTML = `
-                            <a href="#placeholder-url">
+                            <a href="${productUrl}">
                                 <div>
                                     <img src="${product.image}" alt="${product.name}" style="max-width: 100%; height: auto;">
                                 </div>

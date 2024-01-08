@@ -42,11 +42,14 @@
                     <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
                         <a class="nav-link" href="">Contact</a>
                     </li>
+                    <li class="nav-item {{ request()->is('customer/myOrders') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('front.myOrders') }}">My Orders</a>
+                    </li>
                 </ul>
                 <div class="header_icons user_option">
                     <div class="search_container">
-                        <form class="search_form">
-                            <input type="text" class="search_box" placeholder="Search">
+                        <form class="search_form" action="{{ route('front.search') }}">
+                            <input type="text" class="search_box" name="term" placeholder="Search">
                             <button class="btn nav_search-btn" type="submit">
                                 <i class="fa fa-search" aria-hidden="true"></i>
                             </button>
@@ -54,11 +57,38 @@
                     </div>
 
                     <div class="icon_container">
+                        <!-- Assuming you are using Font Awesome for the cart icon -->
                         <div class="icon">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <a href="{{ route('front.cart') }}" style="position: relative; display: inline-block;">
+                                <i class="fa fa-shopping-cart" aria-hidden="true"
+                                    style="color: #ffffff; font-size: 20px;"></i>
+                                @php
+                                    $cartItemCount = count(session('cart', []));
+                                @endphp
+                                @if ($cartItemCount > 0)
+                                    <span
+                                        style="position: absolute; bottom: 0; left: 10; background-color: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 8px;">
+                                        {{ $cartItemCount }}
+                                    </span>
+                                @endif
+                            </a>
                         </div>
+
                         <div class="icon">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <a href="{{ route('front.wishlist') }}"
+                                style="position: relative; display: inline-block; color: white">
+                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                @php
+                                    $wishlistItemCount = count(session('wishlist', []));
+                                @endphp
+                                @if ($wishlistItemCount > 0)
+                                    <span
+                                        style="position: absolute; bottom: 0; left: 10; background-color: red; color: white; border-radius: 50%; padding: 4px 8px; font-size: 8px;">
+                                        {{ $wishlistItemCount }}
+                                    </span>
+                                @endif
+                            </a>
+
                         </div>
                         @auth
                             <span>{{ auth()->user()->name }}</span>

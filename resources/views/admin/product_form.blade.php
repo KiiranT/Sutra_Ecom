@@ -72,7 +72,7 @@
                         <div class="form-group row mb-4">
                             {{ Form::label('sub_cat_id', 'Sub Category:', ['class' => 'col-sm-3']) }}
                             <div class="col-sm-9">
-                                {{ Form::select('sub_cat_id', $sub_categories->pluck('title', 'id'), @$product_list->sub_cat_id, ['class' => 'form-control form-control-sm', 'id' => 'sub_cat_id', 'required' => true, 'placeholder' => 'Select Sub Category']) }}
+                                {{ Form::select('sub_cat_id', $sub_categories->pluck('title', 'id'), @$product_list->sub_cat_id, ['class' => 'form-control form-control-sm', 'id' => 'sub_cat_id', 'placeholder' => 'Select Sub Category']) }}
                                 @error('sub_cat_id')
                                     <span class="alert-danger">{{ $message }}</span>
                                 @enderror

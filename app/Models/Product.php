@@ -43,6 +43,12 @@ class Product extends Model
         return self::where('id', $id)->get()->toArray();
     }
 
+    // Inside the Product model
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'cat_id');
+    }
+
     // public function orders()
     // {
     //     return $this->belongsToMany(Order::class, 'product_orders')->withPivot('quantity');

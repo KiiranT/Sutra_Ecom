@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
-use App\Models\Product; 
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -38,5 +39,12 @@ class IndexController extends Controller
             'latest_product_list' => $latest_product_list,
             'for_you_product_list' => $for_you_product_list,
         ]);
+    }
+
+    public function myOrders()
+    {
+        $userOrders = Order::where('user_id', auth()->user()->id)->get();
+
+        return view('client.myOrders', compact('userOrders'));
     }
 }

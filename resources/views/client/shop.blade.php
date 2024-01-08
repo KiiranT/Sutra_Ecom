@@ -48,41 +48,53 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <div class="category_box">
-                        <p class="one_category active">All</p>
-                        {{-- Display all parent categories --}}
-                        @foreach ($parent_categories as $category)
-                            <p class="one_category">{{ $category['title'] }}</p> {{-- Adjust this according to your array structure --}}
-                        @endforeach
+                    <p class="one_category active" data-category-id="all">All</p>
+                    {{-- Display all parent categories --}}
+                    @foreach ($parent_categories as $category)
+                        <p class="one_category" data-category-id="{{ $category['id'] }}">{{ $category['title'] }}</p>
+                    @endforeach
                 </div>
             </div>
-            <div class="row">
-                @foreach ($all_products as $product)
-                    <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="box">
-                            <a href="{{ $product['url'] }}"> {{-- Adjust this according to your array structure --}}
-                                <div class="img-box">
-                                    <img src="{{ asset('uploads/product/' . $product->image) }}" alt=""
-                                        class="" style="max-width: 100%; height: auto;">
-                                </div>
-                                <div class="detail-box"
-                                    style="background: #f0f0f0; padding: 15px; height: 68px; display: flex; align-items: center">
-                                    <h6>
-                                        {{ $product->title }}
-                                    </h6>
-                                    <h6>
-                                        <span>
-                                            Rs {{ $product->price }}
-                                        </span>
-                                    </h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+            <div class="row category_row">
+                @include('client.category_product')
+               
+
             </div>
-            <div class="btn-box">
-                <a href="">View All Products</a> {{-- Adjust this according to your needs --}}
-            </div>
+            {{-- <div class="btn-box">
+                <a href="">View All Products</a>
+            </div> --}}
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script>
+        $('.one_category').click(function(event) {
+            event.preventDefault();
+            console.log("Category clicked!");
+
+            // Remove the active class from all categories
+            $('.one_category').removeClass('active');
+
+            // Add the active class to the clicked category
+            $(this).addClass('active');
+
+            var categoryId = $(this).data('category-id');
+            console.log("Category ID:", categoryId);
+
+            $.ajax({
+                url: '/shop/' + categoryId,
+                type: 'GET',
+                success: function(data) {
+                    // Uncomment the following line once you confirm the data structure
+                    $('.category_row').html(data);
+                },
+                error: function(error) {
+                    console.error('Error fetching products:', error);
+                }
+            });
+        });
+    </script>
 @endsection

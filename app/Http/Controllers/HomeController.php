@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Frontend\IndexController;
 use Illuminate\Http\Request;
 use App\Models\Banner;
-use App\Models\Product; 
+use App\Models\Order;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -31,9 +32,12 @@ class HomeController extends Controller
 
     public function admin()
     {
-        return view('admin.dashboard');
-    }
+        $newOrdersCount = Order::where('condition', 'processing')->count();
+        $totalIncome = Order::where('condition', 'delivered')->sum('total_amount');
 
+        $latestOrders = Order::latest()->take(5)->get(); 
+        return view('admin.dashboard', compact('newOrdersCount', 'totalIncome', 'latestOrders'));
+    }
     public function customer(Banner $_banner, Product $_product)
     {
         $indexController = new IndexController($_banner, $_product);
