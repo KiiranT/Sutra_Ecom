@@ -18,6 +18,8 @@ use App\Http\Controllers\ProductController;
 */
 
 Route::get('/', [App\Http\Controllers\Frontend\IndexController::class, 'index'])->name('front.home');
+Route::get('/about', [App\Http\Controllers\Frontend\IndexController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\Frontend\IndexController::class, 'contact'])->name('contact');
 
 Auth::routes();
 

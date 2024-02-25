@@ -43,4 +43,6 @@ class HomeController extends Controller
         $indexController = new IndexController($_banner, $_product);
         return $indexController->index();
     }
+
+   
 }

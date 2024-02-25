@@ -47,4 +47,12 @@ class IndexController extends Controller
 
         return view('client.myOrders', compact('userOrders'));
     }
+
+    public function about(){
+        return view('client.about');
+    }
+
+    public function contact(){
+        return view('client.contact');
+    }
 }

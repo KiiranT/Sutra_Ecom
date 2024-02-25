@@ -1,48 +1,98 @@
-    <!-- contact section -->
+@extends('layouts.client')
 
-    <section class="contact_section ">
-        <div class="container px-0">
-            <div class="heading_container ">
-                <h2 class="">
-                    Contact Us
-                </h2>
-            </div>
+@section('title', 'Munal Stores')
+
+@section('style')
+<style>
+    /* Contact section CSS styles */
+    .contact_section {
+        padding: 50px 0;
+        background-color: #f9f9f9;
+    }
+
+    .heading_container h2 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .container-bg {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-bg input,
+    .container-bg textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .container-bg button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .container-bg button:hover {
+        background-color: #0056b3;
+    }
+</style>
+@endsection
+
+@section('main-content')
+<section class="contact_section">
+    <div class="container px-0">
+        <div class="heading_container">
+            <h2>Contact Us</h2>
         </div>
-        <div class="container container-bg">
-            <div class="row">
-                <div class="col-lg-7 col-md-6 px-0">
-                    <div class="map_container">
-                        <div class="map-responsive">
-                            <iframe
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=Eiffel+Tower+Paris+France"
-                                width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%"
-                                allowfullscreen></iframe>
-                        </div>
+    </div>
+    <div class="container container-bg">
+        <div class="row">
+            <div class="col-lg-2 col-md-6 px-0">
+            </div>
+            
+            <div class="col-md-6 col-lg-8 px-0">
+                <form id="contactForm" action="#">
+                    <div>
+                        <input type="text" placeholder="Name">
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-5 px-0">
-                    <form action="#">
-                        <div>
-                            <input type="text" placeholder="Name" />
-                        </div>
-                        <div>
-                            <input type="email" placeholder="Email" />
-                        </div>
-                        <div>
-                            <input type="text" placeholder="Phone" />
-                        </div>
-                        <div>
-                            <input type="text" class="message-box" placeholder="Message" />
-                        </div>
-                        <div class="d-flex ">
-                            <button>
-                                SEND
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                    <div>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Phone">
+                    </div>
+                    <div>
+                        <textarea class="message-box" placeholder="Message"></textarea>
+                    </div>
+                    <div class="d-flex">
+                        <button type="submit">SEND</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+@endsection
 
-    <!-- end contact section -->
+@section('scripts')
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        
+        // Handle form submission here, e.g., send form data to server
+        
+        alert('Form Submitted Successfully');
+        location.reload(); // Reload the page after form submission
+    });
+</script>
+@endsection

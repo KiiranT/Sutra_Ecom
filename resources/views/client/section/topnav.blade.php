@@ -34,13 +34,13 @@
                         </li>
                     @endif
                     <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
-                        <a class="nav-link" href="">About</a>
+                        <a class="nav-link" href="{{route('about')}}">About</a>
                     </li>
                     <li class="nav-item {{ request()->is('shop') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('front.shop') }}">Shop</a>
                     </li>
                     <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
-                        <a class="nav-link" href="">Contact</a>
+                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
                     </li>
                     <li class="nav-item {{ request()->is('customer/myOrders') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('front.myOrders') }}">My Orders</a>
