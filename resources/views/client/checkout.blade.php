@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Checkout - Munal Stores')
+@section('title', 'Checkout - Sutra Accessories')
 
 @section('style')
     <style>

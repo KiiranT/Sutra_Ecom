@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Order Confirmation - Munal Stores')
+@section('title', 'Order Confirmation - Sutra Accessories')
 
 @section('style')
     <style>

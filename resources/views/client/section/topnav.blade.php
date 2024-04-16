@@ -10,43 +10,41 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-brand" style="margin-left: 150px;">
+                <div class="navbar-brand" style="margin-left: 50px;">
                     @if (auth()->check())
-                        <a href="{{ route('customer') }}">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="Munal Store">
+                        <a href="{{ route('customer') }}" style="text-decoration: none">
+                            <h2 style="color: black">Sutra Accessories</h2>
                         </a>
                     @else
-                        <a href="{{ route('front.home') }}">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="Munal Store">
+                        <a href="{{ route('front.home') }}" style="text-decoration: none">
+                            {{-- <img src="{{ asset('assets/images/logo.png') }}" alt="Sutra Accessories"> --}}
+                            <h2 style="color: black">Sutra Accessories</h2>
                         </a>
                     @endif
                 </div>
-                <ul class="navbar-nav">
-                    @if (auth()->check())
-                        <li class="nav-item {{ request()->is('customer') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('customer') }}">Home <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                    @else
-                        <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('front.home') }}">Home <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                    @endif
-                    <li class="nav-item {{ request()->is('about') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{route('about')}}">About</a>
-                    </li>
-                    <li class="nav-item {{ request()->is('shop') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('front.shop') }}">Shop</a>
-                    </li>
-                    <li class="nav-item {{ request()->is('contact') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{route('contact')}}">Contact</a>
-                    </li>
-                    <li class="nav-item {{ request()->is('customer/myOrders') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('front.myOrders') }}">My Orders</a>
-                    </li>
-                </ul>
+                
+               
                 <div class="header_icons user_option">
+                   
+                    <ul class="navbar-nav">
+                        @if (auth()->check())
+                            <li class="nav-item {{ request()->is('customer') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('customer') }}">Home <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                        @else
+                            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('front.home') }}">Home <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                        @endif
+                        <li class="nav-item {{ request()->is('shop') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('front.shop') }}">Shop</a>
+                        </li>
+                        <li class="nav-item {{ request()->is('customer/myOrders') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('front.myOrders') }}">My Orders</a>
+                        </li>
+                    </ul>
                     <div class="search_container">
                         <form class="search_form" action="{{ route('front.search') }}">
                             <input type="text" class="search_box" name="term" placeholder="Search">
@@ -55,13 +53,12 @@
                             </button>
                         </form>
                     </div>
-
                     <div class="icon_container">
                         <!-- Assuming you are using Font Awesome for the cart icon -->
                         <div class="icon">
                             <a href="{{ route('front.cart') }}" style="position: relative; display: inline-block;">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"
-                                    style="color: #ffffff; font-size: 20px;"></i>
+                                    style="color: rgb(107, 107, 107); font-size: 30px;"></i>
                                 @php
                                     $cartItemCount = count(session('cart', []));
                                 @endphp
@@ -76,7 +73,7 @@
 
                         <div class="icon">
                             <a href="{{ route('front.wishlist') }}"
-                                style="position: relative; display: inline-block; color: white">
+                                style="position: relative; display: inline-block; color: rgb(107, 107, 107); font-size: 25px;">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 @php
                                     $wishlistItemCount = count(session('wishlist', []));
@@ -93,8 +90,8 @@
                         @auth
                             <span>{{ auth()->user()->name }}</span>
                         @endauth
-                        <div class="icon user-dropdown" onclick="toggleDropdown()">
-                            <i class="fa fa-user" aria-hidden="true"></i>
+                        <div class="icon user-dropdown" onclick="toggleDropdown()" >
+                            <i class="fa fa-user" aria-hidden="true" style="font-size: 25px; margin-top: 5px"></i>
                             <div class="dropdown-content">
                                 @if (auth()->check())
                                     <!-- User is authenticated -->
@@ -112,13 +109,15 @@
                                     </form>
                                 @else
                                     <!-- User is not authenticated -->
-                                    <a href="{{ route('login') }}">Login/Signup</a>
+                                    <a href="{{ route('login') }}">Login</a>
+                                    <a href="{{ route('register') }}">Signup</a>
                                 @endif
                             </div>
                         </div>
 
                     </div>
                 </div>
+            </div>
         </nav>
     </header>
     <!-- end header section -->

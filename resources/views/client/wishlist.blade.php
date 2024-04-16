@@ -1,50 +1,57 @@
 @extends('layouts.client')
 
-@section('title', 'Munal Stores')
+@section('title', 'Sutra Accessories')
 
 @section('style')
     <style>
         .cart-container {
             margin-top: 50px;
-            margin-bottom: 50px
+            margin-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
         }
 
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .cart-table th,
-        .cart-table td {
+        .cart-card {
+            width: calc(33.33% - 20px);
+            margin-bottom: 20px;
             border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .cart-table th {
-            background-color: #f2f2f2;
+        .cart-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .cart-card-content {
+            padding: 20px;
+        }
+
+        .cart-card-content h3 {
+            margin-bottom: 10px;
+        }
+
+        .cart-card-content p {
+            margin-bottom: 20px;
         }
 
         .cart-actions {
             display: flex;
             justify-content: flex-end;
-            margin-top: 20px;
         }
 
-        .btn-update,
-        .btn-checkout {
+        .btn-add-to-cart,
+        .btn-remove {
             background-color: #e44d26;
             color: #fff;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
             margin-left: 10px;
-        }
-
-        .quantity-input {
-            width: 50px;
-            text-align: center;
         }
 
         .flash-message {
@@ -55,7 +62,7 @@
             background-color: #ffffff;
             border: 1px solid #d6e9c6;
             border-radius: 4px;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             z-index: 1000;
@@ -65,7 +72,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 20px
+            font-size: 16px;
         }
 
         .close-btn {
@@ -73,65 +80,40 @@
             font-size: 24px;
             font-weight: bold;
             color: #31708f;
-            position: absolute;
-            top: 15px;
-            /* Adjust the top spacing */
-            right: 15px;
-            /* Adjust the right spacing */
         }
     </style>
 @endsection
-@section('main-content')
-    <div class="container cart-container">
-        <h2>Your Wishlist</h2>
 
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Unit Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($wishlists as $key => $item)
-                    <tr>
-                        <td>{{ $item['title'] }}
-                            <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image"
-                                class="product-image" style="width: 100px; height: auto;">
-                        </td>
-                        <td>{{ $item['price'] }}</td>
-                        <td>
-                            <div style="display: flex; gap: 0px 10px;">
-                                <form action="{{ route('product.addToCart', ['id' => $item['id']]) }}" method="post">
-                                    @csrf
-                                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                                </form>
-                                <button class="btn btn-danger" onclick="removeItem({{ $key }})">Remove</button>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-        @if (session('success'))
-            <div class="flash-message">
-                <div class="flash-content">
-                    <p>{{ session('success') }}</p>
-                    <span class="close-btn" onclick="closeFlashMessage()">&times;</span>
+@section('main-content')
+    <h2 style="text-align: center">Your Wishlist</h2>
+    <div class="container cart-container">
+
+        @foreach ($wishlists as $key => $item)
+            <div class="cart-card">
+                <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
+                <div class="cart-card-content">
+                    <h5>{{ $item['title'] }}</h5>
+                    <p>Unit Price: Rs {{ $item['price'] }}</p>
+                    <div class="cart-actions">
+                        <form action="{{ route('product.addToCart', ['id' => $item['id']]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn-add-to-cart" style="background-color: green">Add to Cart</button>
+                        </form>
+                        <button class="btn-remove" onclick="removeItem({{ $key }})">Remove</button>
+                    </div>
                 </div>
             </div>
-        @endif
-        @if (session('info'))
+        @endforeach
+
+        @if (session('success') || session('info'))
             <div class="flash-message">
                 <div class="flash-content">
-                    <p>{{ session('info') }}</p>
+                    <p>{{ session('success') ?? session('info') }}</p>
                     <span class="close-btn" onclick="closeFlashMessage()">&times;</span>
                 </div>
             </div>
         @endif
     </div>
-
 @endsection
 
 @section('scripts')
@@ -141,7 +123,7 @@
                 var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
                 fetch(`/wishlist/remove/${key}`, {
-                        method: 'DELETE', // Use the correct method
+                        method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',
                             'X-CSRF-TOKEN': csrfToken
@@ -151,7 +133,7 @@
                         if (response.ok) {
                             location.reload();
                         } else {
-                            alert('Error removing item from the cart.');
+                            alert('Error removing item from the wishlist.');
                         }
                     })
                     .catch(error => {
@@ -162,11 +144,11 @@
         }
 
         function closeFlashMessage() {
-            $('.flash-message').fadeOut();
+            document.querySelector('.flash-message').style.display = 'none';
         }
 
         setTimeout(function() {
-            $('.flash-message').fadeOut();
+            document.querySelector('.flash-message').style.display = 'none';
         }, 5000);
     </script>
 @endsection

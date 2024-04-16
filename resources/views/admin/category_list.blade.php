@@ -8,7 +8,7 @@
             $('.table').DataTable();
         </script>
     @endsection
-    @section('title', ' Category List | Admin Dashboard | Munal Store')
+    @section('title', ' Category List | Admin Dashboard | Sutra Accessories')
 
     @section('main-content')
         <div class="page-content fade-in-up">

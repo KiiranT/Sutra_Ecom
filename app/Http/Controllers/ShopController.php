@@ -22,20 +22,53 @@ class ShopController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $parent_categories = Category::where(['is_parent' => 1, 'status' => 'active'])->get();
-        $all_products = Product::where(['status' => 'active'])->get();
-        // if ($product_category === 'all') {
-        // } else {
-        //     $all_products = Product::where(['status' => 'active', 'cat_id' => $product_category])->get();
-        // }
+        // Fetch parent categories
+        $parent_categories = $this->category->where(['is_parent' => 1, 'status' => 'active'])->get();
+
+        // Initialize query builder for products
+        $all_products = $this->product->where('status', 'active');
+
+        // Apply price filtering
+        $minPrice = $request->input('minPrice');
+        $maxPrice = $request->input('maxPrice');
+
+        if ($minPrice && $maxPrice) {
+            $all_products->whereBetween('price', [$minPrice, $maxPrice]);
+        }
+
+        // Apply category filtering
+        $categoryId = $request->input('category');
+        if ($categoryId && $categoryId != 'all') {
+            $all_products->where('cat_id', $categoryId);
+        }
+
+        // Apply sorting
+        $sortBy = $request->input('sort');
+        switch ($sortBy) {
+            case 'price-low-high':
+                $all_products->orderBy('price', 'asc');
+                break;
+            case 'price-high-low':
+                $all_products->orderBy('price', 'desc');
+                break;
+            default:
+                // Default sorting logic
+                break;
+        }
+
+        // Get paginated products
+        $all_products = $all_products->paginate(9);
 
         return view('client.shop', [
             'parent_categories' => $parent_categories,
             'all_products' => $all_products,
+            'minPrice' => $this->product->min('price'),
+            'maxPrice' => $this->product->max('price'),
         ]);
     }
+
 
 
     public function singleProduct($id, $slug)

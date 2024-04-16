@@ -1,97 +1,167 @@
 @extends('layouts.client')
 
-@section('title', 'Munal Stores')
+@section('title', 'Sutra Accessories')
 
 @section('style')
     <style>
         .cart-container {
             margin-top: 50px;
-        }
-
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .cart-table th,
-        .cart-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        .cart-table th {
-            background-color: #f2f2f2;
-        }
-
-        .cart-actions {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            justify-content: flex-end;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
-        .btn-update,
-        .btn-checkout {
-            background-color: #e44d26;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            margin-left: 10px;
+        .cart-item {
+            width: calc(33.33% - 20px);
+            margin-bottom: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cart-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .cart-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .cart-item-content {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .cart-item-title {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-quantity {
+            margin-bottom: 10px;
         }
 
         .quantity-input {
             width: 50px;
             text-align: center;
         }
+
+        .total {
+            font-weight: bold;
+            color: #e44d26;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px 10px
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-success:hover,
+        .btn-danger:hover {
+            filter: brightness(90%);
+        }
+
+        .cart-actions {
+            width: 100%;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .btn-checkout {
+            background-color: #e44d26;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-checkout:hover {
+            filter: brightness(90%);
+            color: white;
+            text-decoration: none;
+
+        }
     </style>
 @endsection
 
 @section('main-content')
-    <div class="container cart-container">
-        <h2>Your Shopping Cart</h2>
+    <div class="row">
+        <div class="col-md-4">
 
-        <table class="cart-table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Unit Price</th>
-                    <th>Quantity</th>
-                    <th>Total Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{-- {{ dd($cartItems) }} --}}
-                @foreach ($cartItems as $key => $item)
-                    <tr>
-                        <td>{{ $item['title'] }}
-                            <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image"
-                                class="product-image" style="width: 100px; height: auto;">
-                        </td>
-                        <td>{{ $item['price'] }}</td>
-                        <td>
-                            <input type="number" class="quantity-input" value="{{ $item['quantity'] }}"
-                                data-key="{{ $key }}" data-price="{{ $item['price'] }}">
-                        </td>
-                        <td class="total">{{ $item['price'] * $item['quantity'] }}</td>
-                        <td>
-                            <button class="btn btn-success" onclick="updateQuantity({{ $key }})">Update</button>
-                            <button class="btn btn-danger" onclick="removeItem({{ $key }})">Remove</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <div class="cart-actions">
-            <a href="{{ route('front.checkout') }}" class="btn btn-checkout"
-                style="margin-bottom: 50px; background: rgb(51, 207, 51); color: white">Proceed
-                to Checkout</a>
         </div>
+        <div class="col-md-4">
+
+            <h2 style="text-align: center">Your Shopping Cart</h2>
+        </div>
+        <div class="col-md-3">
+            <div class="cart-actions" style="margin-bottom: 20px">
+                <a href="{{ route('front.checkout') }}" class="btn-checkout">Proceed to Checkout</a>
+            </div>
+        </div>
+        
     </div>
 
+    <div class="container cart-container">
+
+        @foreach ($cartItems as $key => $item)
+            <div class="cart-item">
+                <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
+                <div class="cart-item-content">
+                    <div class="cart-item-title">{{ $item['title'] }}</div>
+                    <div class="cart-item-price">Unit Price: Rs {{ $item['price'] }}</div>
+                    <div class="cart-item-quantity">
+                        Quantity:
+                        <input type="" class="quantity-input" value="{{ $item['quantity'] }}"
+                            data-key="{{ $key }}" data-price="{{ $item['price'] }}" disabled>
+                    </div>
+                    <div class="total">Total Price: Rs {{ $item['price'] * $item['quantity'] }}</div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="updateQuantity({{ $key }})">Update
+                            Quantity</button>
+                        <button class="btn btn-danger" onclick="removeItem({{ $key }})">Delete</button>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+
+    </div>
 @endsection
 
 @section('scripts')

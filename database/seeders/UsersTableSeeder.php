@@ -19,9 +19,9 @@ class UsersTableSeeder extends Seeder
     {
         $user_data = [
             [
-                'name' => 'Munal Admin',
+                'name' => 'Sutra Admin',
                 'username' => 'Admin',
-                'email' => 'admin@munalstore.com',
+                'email' => 'admin@sutra.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
                 'status' => 'active'
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'Customer One',
                 'username' => 'Customer',
-                'email' => 'customerone@munalstore.com',
+                'email' => 'customer@sutra.com',
                 'password' => Hash::make('customerone123'),
                 'role' => 'customer',
                 'status' => 'active'

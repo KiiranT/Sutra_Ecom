@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Product Add | Admin Dashboard | Munal Store')
+@section('title', 'Product Add | Admin Dashboard | Sutra Accessories')
 
 @section('form_style')
     <style>

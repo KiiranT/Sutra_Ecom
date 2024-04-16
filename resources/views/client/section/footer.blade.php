@@ -1,68 +1,43 @@
  <!-- info section -->
 
  <section class="info_section ">
-     <div class="icon-container">
-         <div class="icon_box">
-             <a href="">
-                 <i class="fa fa-facebook" aria-hidden="true"></i>
-             </a>
-             <a href="">
-                 <i class="fa fa-twitter" aria-hidden="true"></i>
-             </a>
-             <a href="">
-                 <i class="fa fa-instagram" aria-hidden="true"></i>
-             </a>
-             <a href="">
-                 <i class="fa fa-youtube" aria-hidden="true"></i>
-             </a>
-         </div>
-     </div>
-     <div class="info_container ">
+     <footer class="footer_section">
          <div class="container">
              <div class="row">
-                 <div class="col-md-6 col-lg-9">
-                     <h6>
-                         ABOUT US
-                     </h6>
-                     <p>
-                         Welcome to Munal Stores, your one-stop destination for all your shopping needs. Explore a wide
-                         range of products, from trendy fashion to the latest electronics, and experience the
-                         convenience of online shopping with us. Our mission is to provide high-quality products,
-                         exceptional customer service, and a seamless shopping experience.
-                     </p>
+                 <div class="col-md-4">
+                     <h4>About Us</h4>
+                     <p>Welcome to Sutra Accessories, where all your shopping requirements are met in one place.
+                         Discover an extensive array of items, spanning from stylish apparel to cutting-edge
+                         electronics, and enjoy the ease of online shopping with our platform. Our goal is to deliver
+                         top-notch products, outstanding customer support, and a smooth shopping journey.</p>
                  </div>
-                 <div class="col-md-3 col-lg-3">
-                     <h6>
-                         CONTACT US
-                     </h6>
-                     <div class="info_link-box">
-                         <a href="">
-                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                             <span> Pokhara, Nepal </span>
-                         </a>
-                         <a href="">
-                             <i class="fa fa-phone" aria-hidden="true"></i>
-                             <span>+977987654321</span>
-                         </a>
-                         <a href="">
-                             <i class="fa fa-envelope" aria-hidden="true"></i>
-                             <span>munalstore@gmail.com</span>
-                         </a>
-                     </div>
+                 <div class="col-md-4">
+                     <h4>Contact Us</h4>
+                     <ul class="contact_info">
+                         <li><i class="fa fa-map-marker" aria-hidden="true"></i> Pokhara, Nepal</li>
+                         <li><i class="fa fa-phone" aria-hidden="true"></i> +977987654321</li>
+                         <li><i class="fa fa-envelope" aria-hidden="true"></i> munalstore@gmail.com</li>
+                     </ul>
+                 </div>
+                 <div class="col-md-4">
+                     <h4>Follow Us</h4>
+                     <ul class="social_icons">
+                         <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                         <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                         <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                     </ul>
                  </div>
              </div>
          </div>
-     </div>
-     <!-- footer section -->
-     <footer class=" footer_section">
-         <div class="container">
-             <p>
-                 &copy; <span id="displayYear"></span> All Rights Reserved By
-                 <a href="{{ route('front.home') }}">Munal Stores</a>
-             </p>
+         <div class="bottom_footer">
+             <div class="container">
+                 <p>&copy; <span id="displayYear"></span> All Rights Reserved By <a
+                         href="{{ route('front.home') }}">Sutra Accessories</a></p>
+             </div>
          </div>
      </footer>
-     <!-- footer section -->
+
 
  </section>
 

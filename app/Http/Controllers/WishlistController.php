@@ -44,6 +44,7 @@ class WishlistController extends Controller
 
     public function removeItem($key)
     {
+        dd('hi');
         $wishlists = session('wishlist', []);
 
         // Check if the key exists in the cart items

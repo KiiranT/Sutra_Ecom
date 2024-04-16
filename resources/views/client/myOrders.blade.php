@@ -2,7 +2,7 @@
 
 @extends('layouts.client')
 
-@section('title', 'My Orders - Munal Stores')
+@section('title', 'My Orders - Sutra Accessories')
 
 @section('style')
     <!-- Add any specific styles for the My Orders page if needed -->
