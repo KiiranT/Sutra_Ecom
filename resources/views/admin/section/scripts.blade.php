@@ -8,10 +8,16 @@
 <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="../../../template/admin/assets/vendors/jquery/dist/jquery.min.js"></script>
-{{--<script type="text/javascript" data-keditor="script" src="@vite('resources/js/admin.js')">--}}
-{{--<script src=" @vite(['resources/css/admin.css', 'resources/js/admin.js'])">--}}
+{{-- <script type="text/javascript" data-keditor="script" src="@vite('resources/js/admin.js')"> --}}
+{{-- <script src=" @vite(['resources/css/admin.css', 'resources/js/admin.js'])"> --}}
 
 @yield('scripts')
+<script>
+    function toggleLogoutDropdown() {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('show');
+    }
+</script>
 </body>
 
 </html>
