@@ -130,7 +130,7 @@
             <img src="https://source.unsplash.com/featured/?shopping,mall" alt="Logo">
         </div>
         <div class="right">
-            <h2>Welcome to Sutra Accessories!</h2>
+            <h2>Welcome to <a href="{{route('front.home')}}" style="text-decoration: none; color: rgb(79, 79, 240) ">Sutra Accessories!</a></h2>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf

@@ -1,7 +1,25 @@
 @extends('layouts.admin')
 
-@section('styles')
+@section('form_style')
     <link rel="stylesheet" href="{{ asset('css/datatables.css') }}">
+    <style>
+        .row-color-1 {
+            background-color: #fdaeae;
+        }
+
+        .row-color-2 {
+            background-color: #9cd0f6;
+        }
+
+        .row-color-3 {
+            background-color: #c7f6d0;
+        }
+
+        .row-color-4 {
+            background-color: #f6e0c7;
+        }
+    </style>
+@endsection
 @section('scripts')
     <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script>
@@ -16,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="ibox">
                     <div class="ibox-head">
-                        <div class="ibox-title">Order List</div>
+                        <div class="ibox-title">All Orders</div>
                     </div>
                     <div class="ibox-body">
                         <table class="table table-hover">
@@ -30,13 +48,16 @@
                                     <th>Sub-total</th>
                                     <th>Total</th>
                                     <th style="width: 90px">Condition</th>
-                                    <th style="width: 120px">Action</th>
+                                    <th style="width: 50px">View</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if (isset($order_list))
                                     @foreach ($order_list as $orders => $order)
-                                        <tr>
+                                        @php
+                                            $row_color_class = 'row-color-' . (($orders % 4) + 1);
+                                        @endphp
+                                        <tr class="{{ $row_color_class }}">
                                             <td>{{ $orders + 1 }}</td>
                                             <td>{{ $order->order_number }}</td>
                                             <td>{{ \App\Models\User::where('id', $order->user_id)->value('name') }}

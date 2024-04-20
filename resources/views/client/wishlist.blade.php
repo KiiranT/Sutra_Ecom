@@ -87,23 +87,30 @@
 @section('main-content')
     <h2 style="text-align: center">Your Wishlist</h2>
     <div class="container cart-container">
+        @if (count($wishlists) > 0)
 
-        @foreach ($wishlists as $key => $item)
-            <div class="cart-card">
-                <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
-                <div class="cart-card-content">
-                    <h5>{{ $item['title'] }}</h5>
-                    <p>Unit Price: Rs {{ $item['price'] }}</p>
-                    <div class="cart-actions">
-                        <form action="{{ route('product.addToCart', ['id' => $item['id']]) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn-add-to-cart" style="background-color: green">Add to Cart</button>
-                        </form>
-                        <button class="btn-remove" onclick="removeItem({{ $key }})">Remove</button>
+            @foreach ($wishlists as $key => $item)
+                <div class="cart-card">
+                    <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
+                    <div class="cart-card-content">
+                        <h5>{{ $item['title'] }}</h5>
+                        <p>Unit Price: Rs {{ $item['price'] }}</p>
+                        <div class="cart-actions">
+                            <form action="{{ route('product.addToCart', ['id' => $item['id']]) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn-add-to-cart" style="background-color: green">Add to
+                                    Cart</button>
+                            </form>
+                            <button class="btn-remove" onclick="removeItem({{ $key }})">Remove</button>
+                        </div>
                     </div>
                 </div>
+            @endforeach
+        @else
+            <div class="alert alert-danger" role="alert">
+                No items in the wishist.
             </div>
-        @endforeach
+        @endif
 
         @if (session('success') || session('info'))
             <div class="flash-message">

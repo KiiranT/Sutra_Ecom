@@ -39,7 +39,7 @@
                             </li>
                         @endif
                         <li class="nav-item {{ request()->is('shop') ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('front.shop') }}">Shop</a>
+                        <a class="nav-link" href="{{ route('front.shop') }}">Shop</a>
                         </li>
                         <li class="nav-item {{ request()->is('customer/myOrders') ? 'active' : '' }}">
                             <a class="nav-link" href="{{ route('front.myOrders') }}">My Orders</a>

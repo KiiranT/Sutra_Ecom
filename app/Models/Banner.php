@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Banner extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'link', 'status', 'image', 'added_by'];
+    protected $fillable = ['title', 'status', 'image', 'added_by'];
 
     public function rules($act = 'add')
     {

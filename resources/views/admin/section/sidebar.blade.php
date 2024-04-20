@@ -22,33 +22,33 @@
         </div>
         <ul class="side-menu metismenu">
             <li>
-                <a class="active" href="{{ route(auth()->user()->role) }}" style="text-decoration: none">
+                <a class="{{ request()->is('admin') ? 'active' : '' }}" href="{{ route(auth()->user()->role) }}" style="text-decoration: none">
                     <span class="" style="color: white; font-size: 15px"> 📈 Dashboard</span>
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('banner.index') }}" style="text-decoration: none">
-                    <span class="nav-label" style="color: white; font-size: 15px">🖼️ Banner Manager</span>
+                <a class="{{ request()->is('admin/banner*') ? 'active' : '' }}" href="{{ route('banner.index') }}" style="text-decoration: none">
+                    <span class="nav-label" style="color: white; font-size: 15px">🖼️ All Banners</span>
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('category.index') }}" style="text-decoration: none">
-                    <span class="nav-label" style="color: white; font-size: 15px">✳️ Category Manager</span>
+                <a class="{{ request()->is('admin/category*') ? 'active' : '' }}" href="{{ route('category.index') }}" style="text-decoration: none">
+                    <span class="nav-label" style="color: white; font-size: 15px">✳️ All Categories</span>
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('product.index') }}" style="text-decoration: none">
-                    <span class="nav-label" style="color: white; font-size: 15px">🛒 Product Manager</span>
+                <a class="{{ request()->is('admin/product*') ? 'active' : '' }}" href="{{ route('product.index') }}" style="text-decoration: none">
+                    <span class="nav-label" style="color: white; font-size: 15px">🛒 All Products</span>
                 </a>
             </li>
             <li>
-                <a class="" href="{{ route('order.index') }}" style="text-decoration: none">
-                    <span class="nav-label" style="color: white; font-size: 15px">✅ Order Manager</span>
+                <a class="{{ request()->is('admin/order*') ? 'active' : '' }}" href="{{ route('order.index') }}" style="text-decoration: none">
+                    <span class="nav-label" style="color: white; font-size: 15px">✅ All Orders</span>
                 </a>
             </li>
             <li>
-                <a class="" href="" style="text-decoration: none">
-                    <span class="nav-label" style="color: white; font-size: 15px">👨 Users Manager</span>
+                <a class="{{ request()->is('user*') ? 'active' : '' }}" href="" style="text-decoration: none">
+                    <span class="nav-label" style="color: white; font-size: 15px">👨 All Users</span>
                 </a>
             </li>
             <!-- Add additional menu items or elements here -->

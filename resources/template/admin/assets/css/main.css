@@ -3031,6 +3031,10 @@ a.text-danger:hover, a.text-danger:focus {
 .side-menu .nav-3-level > li > a {
   padding: 7px 10px 7px 55px; }
 
+  .side-menu .active {
+    background-color: #3346A7; /* Set the background color for the active item */
+}
+
 /*************************
   MINI Sidebar
 ************************/

@@ -4,31 +4,47 @@
 
 @section('style')
     <style>
-        .category_box {
-            display: flex;
-            width: 1140px;
-            height: 63.5px;
-            padding: 3px 350.7px 3px 350.69px;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 0px 20px;
-            flex-shrink: 0;
-            border-radius: 5px;
-            background: #FFF;
+        .product-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 400px;
+            margin-bottom: 20px
         }
 
-        /* Add any additional styles for displaying search results */
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 20px;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
 
         .product-image {
-            max-width: 100px;
-            max-height: 100px;
-            margin-right: 10px;
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 2px solid #fff;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            /* border-bottom: 2px solid #007bff; */
+        }
+
+        .product-details {
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #007bff;
+            font-weight: bold;
         }
     </style>
 @endsection
@@ -38,30 +54,22 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <div class="">
-                    <h5>Search Results</h5>
+                    <h5>SUTRA MALL</h5>
                 </div>
             </div>
 
             <div class="row">
                 @forelse ($results as $product)
                     <div class="col-sm-6 col-md-4 col-lg-3">
-                        <div class="box">
+                        <div class="product-card">
                             <a href="{{ route('front.single_product', ['id' => $product->id, 'slug' => $product->title]) }}">
-                                {{-- Adjust this according to your array structure --}}
                                 <div class="img-box">
-                                    <img src="{{ asset('uploads/product/' . $product->image) }}" alt=""
-                                        class="" style="max-width: 100%; height: auto;">
+                                    <img src="{{ asset('uploads/product/' . $product->image) }}" alt="Product Image"
+                                        class="product-image">
                                 </div>
-                                <div class="detail-box"
-                                    style="background: #f0f0f0; padding: 15px; height: 68px; display: flex; align-items: center">
-                                    <h6>
-                                        {{ $product->title }}
-                                    </h6>
-                                    <h6>
-                                        <span>
-                                            Rs {{ $product->price }}
-                                        </span>
-                                    </h6>
+                                <div class="product-details">
+                                    <h6 class="product-title">{{ $product->title }}</h6>
+                                    <span class="product-price">Rs {{ $product->price }}</span>
                                 </div>
                             </a>
                         </div>

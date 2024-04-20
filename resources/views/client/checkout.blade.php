@@ -4,123 +4,102 @@
 
 @section('style')
     <style>
-        .check-container {
-            max-width: 90%;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-        }
+     .check-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+    gap: 20px;
+}
 
-        .left-card,
-        .right-card {
-            flex: 1;
-            padding: 10px;
-            margin: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
+.card {
+    flex-basis: calc(50% - 20px); /* Adjust card width */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 20px; /* Add spacing between cards */
+}
 
-        h2,
-        h3 {
-            color: #333;
-        }
+h2,
+h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
 
-        .checkout-form {
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
+.checkout-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 
-        .text-area {
-            resize: none;
-        }
+.text-area {
+    resize: vertical;
+}
 
-        button {
-            background-color: #e44d26;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
 
-        /* Additional CSS for the checkbox */
-        .checkbox-container {
-            display: flex;
-            align-items: flex-start;
-            margin-top: 15px;
-        }
+.checkbox-label {
+    margin-left: 5px;
+    font-weight: normal;
+}
 
-        #same-address {
-            margin-left: 0;
-        }
+.right-card {
+    padding: 20px;
+}
 
-        .checkbox-label {
-            margin-left: 10px;
-            margin-top: -2px
-        }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
 
-        .right-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-        }
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
+thead {
+    background-color: #f2f2f2;
+}
 
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
+tfoot {
+    background-color: #e44d26;
+    color: #fff;
+}
 
-        thead {
-            background-color: #f2f2f2;
-        }
+tfoot td {
+    font-weight: bold;
+}
 
-        tfoot {
-            background-color: #e44d26;
-            color: #fff;
-        }
+.payment-options label {
+    margin-right: 15px;
+    font-weight: bold;
+}
 
-        tfoot td {
-            font-weight: bold;
-        }
-
-        p {
-            margin-top: 15px;
-            color: #888;
-        }
-
-        .payment-options label {
-            font-weight: normal;
-        }
     </style>
 @endsection
 

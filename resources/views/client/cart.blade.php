@@ -135,31 +135,37 @@
                 <a href="{{ route('front.checkout') }}" class="btn-checkout">Proceed to Checkout</a>
             </div>
         </div>
-        
+
     </div>
 
     <div class="container cart-container">
+        @if (count($cartItems) > 0)
 
-        @foreach ($cartItems as $key => $item)
-            <div class="cart-item">
-                <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
-                <div class="cart-item-content">
-                    <div class="cart-item-title">{{ $item['title'] }}</div>
-                    <div class="cart-item-price">Unit Price: Rs {{ $item['price'] }}</div>
-                    <div class="cart-item-quantity">
-                        Quantity:
-                        <input type="" class="quantity-input" value="{{ $item['quantity'] }}"
-                            data-key="{{ $key }}" data-price="{{ $item['price'] }}" disabled>
-                    </div>
-                    <div class="total">Total Price: Rs {{ $item['price'] * $item['quantity'] }}</div>
-                    <div class="action-buttons">
-                        <button class="btn btn-primary" onclick="updateQuantity({{ $key }})">Update
-                            Quantity</button>
-                        <button class="btn btn-danger" onclick="removeItem({{ $key }})">Delete</button>
+            @foreach ($cartItems as $key => $item)
+                <div class="cart-item">
+                    <img src="{{ asset('uploads/product/' . $item['image']) }}" alt="Product Image">
+                    <div class="cart-item-content">
+                        <div class="cart-item-title">{{ $item['title'] }}</div>
+                        <div class="cart-item-price">Unit Price: Rs {{ $item['price'] }}</div>
+                        <div class="cart-item-quantity">
+                            Quantity:
+                            <input type="" class="quantity-input" value="{{ $item['quantity'] }}"
+                                data-key="{{ $key }}" data-price="{{ $item['price'] }}" disabled>
+                        </div>
+                        <div class="total">Total Price: Rs {{ $item['price'] * $item['quantity'] }}</div>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary" onclick="updateQuantity({{ $key }})">Update
+                                Quantity</button>
+                            <button class="btn btn-danger" onclick="removeItem({{ $key }})">Delete</button>
+                        </div>
                     </div>
                 </div>
+            @endforeach
+        @else
+            <div class="alert alert-danger" role="alert">
+                No items in the cart.
             </div>
-        @endforeach
+        @endif
 
     </div>
 @endsection

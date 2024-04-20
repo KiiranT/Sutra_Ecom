@@ -44,15 +44,34 @@
 
         .product {
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 20px;
             border: 1px solid #dddddd;
-            border-radius: 5px;
-            height: 350px;
+            border-radius: 10px;
+            height: 100%;
+            transition: transform 0.3s ease;
         }
 
         .product img {
             max-width: 100%;
             height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product h5 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .product p {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
     </style>
 @endsection
@@ -101,19 +120,23 @@
                     <div class="row category_row">
                         <!-- Display products here -->
                         @foreach ($all_products as $product)
-                            <div class="col-md-4">
-                                <div class="product">
-                                    <img src="{{ asset('uploads/product/' . $product['image']) }}" alt="Product Image">
-                                    <h5>{{ $product['title'] }}</h5>
-                                    <p>Price: ${{ $product['price'] }}</p>
-                                    <!-- Add more product details as needed -->
-                                </div>
+                            <div class="col-md-4" style="margin-bottom: 20px">
+                                <a href="{{ route('front.single_product', ['id' => $product->id, 'slug' => $product->title]) }}"
+                                    style="text-decoration: none; color: inherit;">
+                                    <div class="product">
+                                        <img src="{{ asset('uploads/product/' . $product['image']) }}" alt="Product Image">
+                                        <h5>{{ $product['title'] }}</h5>
+                                        <p>Price: ${{ $product['price'] }}</p>
+                                        <!-- Add more product details as needed -->
+                                    </div>
+                                </a>
                             </div>
                         @endforeach
+
                     </div>
                     {{-- <div class="btn-box">
-                        <a href="">View All Products</a>
-                    </div> --}}
+                    <a href="">View All Products</a>
+                </div> --}}
                 </div>
             </div>
         </div>

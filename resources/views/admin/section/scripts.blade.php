@@ -18,6 +18,16 @@
         dropdownMenu.classList.toggle('show');
     }
 </script>
+
+{{-- <script>
+    function openBannerFormModal() {
+        $('#bannerFormModal').modal('show');
+        // Load the banner form content using AJAX and insert it into modal-content div
+        $.get("{{ route('banner.create') }}", function(data) {
+            $('#bannerFormModal .modal-content').html(data);
+        });
+    }
+</script> --}}
 </body>
 
 </html>
