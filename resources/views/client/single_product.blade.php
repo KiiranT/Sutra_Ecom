@@ -161,6 +161,14 @@
                                     @csrf
                                     <button type="submit" class="btn btn-secondary">Add to Wishlist</button>
                                 </form>
+                                <form id="my-form"
+                                    action="{{ url('http://127.0.0.1:8000/chatify/1') }}"
+                                    method="get" target="_blank">
+                                    <input type="hidden" value="{{ @$product->id }}" name="product_id">
+                                    <button class="btn btn--e-brand-b-2 btn-primary"
+                                        onclick="if (confirm('Do you want to start a conversation about this product?')) { submitForm(); }">Chat
+                                        Now</button>
+                                </form>
                             </div>
 
                             <!-- Flash Messages -->
@@ -185,6 +193,8 @@
                 </div>
 
                 <!-- Product Details Section (Right Side) -->
+
+
 
                 <hr>
                 <!-- Product Description Section (Below Product Details) -->
@@ -214,5 +224,10 @@
         setTimeout(function() {
             $('.flash-message').fadeOut();
         }, 5000);
+    </script>
+     <script>
+        function submitForm() {
+            document.getElementById("my-form").submit();
+        }
     </script>
 @endsection
